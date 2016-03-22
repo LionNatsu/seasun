@@ -1,8 +1,8 @@
 {
-  "name": "aosc-portal",
+  "name": "seasun",
   "version": "1.0.0",
-  "description": "The portal website program for Anthon Open Source Community (AOSC).",
-  "main": "index.js",
+  "description": "",
+  "main": "app.js",
   "dependencies": {
     "body-parser": "^1.14.2",
     "express": "^4.12.4",
@@ -17,10 +17,6 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://gitcafe.com/AOSC-Dev/website-site-ng.git"
   },
   "keywords": [
     "portal"
