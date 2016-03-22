@@ -1,0 +1,17 @@
+extend templates/masterB.jade
+
+append stylesheet
+  style .circle-frame-border{width:#{itemSize};height:#{itemSize};}
+
+block content
+  #wrapper.row
+    .col-sm-12
+      .circle-table
+        - var i = 0;
+        while i < ships.length
+          .circle-row
+            - var roll_i = 0;
+            while roll_i < itemsPerRow && i < ships.length
+              a(href="/ship?name=" + ships[i].name)
+                +content-circle(ships[i].name, ships[i].photoUrl)
+              - roll_i++; i++;

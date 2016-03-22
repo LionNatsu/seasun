@@ -1,11 +1,12 @@
 Thumbs.db
+node_modules/
 /static/assets/css/*
 !/static/assets/css/font-awesome*
 !/static/assets/css/bootstrap*
 !/static/assets/css/magnific-popup.css
 /.buildpath
 /build/
-*/archive/
+archive/
 
 __MACOSX
 .DS_Store

@@ -1,0 +1,66 @@
+extend templates/masterB.jade
+
+block content
+  #wrapper.row
+    .col-sm-12
+      #stage
+        .col-sm-2
+        .col-sm-10
+          .second-layer
+        .circle-table.circle-table-first-step
+          - var i = 0;
+          while i < business.length
+            .circle-row
+              - var roll_i = 0;
+              while roll_i < itemsPerRow && i < business.length
+                a(href="javascript:;")
+                  +content-circle(business[i].name, business[i].imageUrl)
+                if business[i].samples
+                  .repo
+                    .circle-table
+                      - var j = 0;
+                      while j < business[i].samples.length
+                        .circle-row
+                          - var roll_j = 0;
+                          while roll_j < itemsPerRow && j < business[i].samples.length
+                            +content-circle(business[i].samples[j].name, business[i].samples[j].imageUrl)
+                            - roll_j++; j++;
+                - roll_i++; i++;
+
+  script.
+    $(function() {
+      $(".circle-table-first-step > .circle-row > a").click(function(){
+        var btn_this = this;
+        if($(btn_this).next(".repo").length==0) return;
+        $(btn_this)
+          .clone()
+            .css("position", "absolute")
+            .css("display", "table")
+            .click(function(){
+              $("#stage .col-sm-2").children().animate({left: "0", top: "0", opacity: "0"}, "fast", function(){
+                $(this).remove();
+              });
+              $("#stage .second-layer").children().css("position", "absolute");
+              $(".circle-table-first-step").fadeIn("fast");
+              $("#stage .second-layer").children().fadeOut("fast", function(){
+                $(this).remove();
+              });
+            })
+            .find(".circle-frame-border")
+              .css("background-color", "#829dc9")
+              .css("text-align", "left")
+              .css("border-top-left-radius", "0")
+              .prepend("<span style='position: absolute; color: #e8ebee; left: 20px; top: 2px;'>案例</span>")
+            .end()
+          .appendTo("#stage .col-sm-2")
+          .animate({left: "-130px", top: "0"}, "fast");
+        $(".circle-table-first-step").fadeOut("fast", function(){
+          $(btn_this).next()
+            .clone()
+              .css("display", "block")
+              .css("float", "left")
+              .hide()
+            .appendTo("#stage .second-layer").fadeIn("fast");
+        });
+      });
+    });

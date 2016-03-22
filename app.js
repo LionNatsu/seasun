@@ -26,6 +26,14 @@ var routes = require('./controllers/router.js'); // ← your stuff
 // to-do things
 '"Plz read the fine manual" says the Jeff'
 app.use(bodyParser.urlencoded({ extended: false }));
+var jade = require('jade');
+app.engine('jade', function(path, options, fn) {
+    if(options.compileDebug == undefined && process.env.NODE_ENV === 'production') {
+      options.compileDebug = false;
+    }
+    options.pretty = true;
+    jade.renderFile(path, options, fn);
+  });
 app.set('view engine', 'jade'); // Use Lion and Jade
 app.set('views', './views');    // your truly personal digital
 // assistant

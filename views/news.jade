@@ -1,32 +1,34 @@
-extend templates/master.jade
-
-block head-custom
-  +meta-title("News Flow")
-  +meta-description("Anthon Open Source Community")
+extend templates/masterB.jade
 
 append stylesheet
-  +include-css("/assets/css/flow.css")
-
-block banner
-  .row
-    .col-md-12
-      h1 NEWS
-      h2 Read hard, get it all caught up :-D
-    .col-md-6
-      p.
-        Things are (actually) going on around the community (surprise!), here we provide
-        you with a stream of news in the community.
+  +include-css("/assets/css/news.css")
 
 block content
   #wrapper.row
-    .col-md-8
-      block news-reuse
-        h1.afe-small-captions LASTEST NEWS
-        ul.afe-flow
-          each val, index in params.broadcast
-            li(class="afe-tag-"+val.type)
-              h1.afe-title=val.title
-                small=val.date
-              .afe-content
-                each para in val.content
-                  !=para
+    .col-sm-8
+      each value in news
+        .card.folded
+          .card-header
+            h1=value.title
+            h2=value.date
+          .clearfix
+            +content-circle("", value.imageUrl)
+            - var paras = value.paras.replace(/\n\n/g, "\r").replace(/\n/g, "").split("\r");
+            each para in paras
+              p=para
+    .col-sm-4.sidebar
+      .card
+        .card-header
+          h2 要问快报
+        each value in reports
+          .tile
+            +content-circle("", value.imageUrl)
+            p=value.text
+      .card
+        #searchform
+          #searchicon
+            #iconborder
+              #iconcore
+          form(method="get", action="https://www.baidu.com/s")
+            input#searchinput(type="text", name="q1", required, placeholder="搜索..")
+            input(type="hidden", name="q6", value=domain)

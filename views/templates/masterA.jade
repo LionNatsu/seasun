@@ -1,0 +1,103 @@
+//-
+  This is a template for all pages
+  
+  My blocks for extending:
+    
+    head-custom (extended from base)
+      Usage: OVERRIDE
+      * You MUST override this block to explicitly define what the title is
+      * and what the keywords are.
+    
+    navbar
+      Usage: li
+    
+    banner
+      Usage: .row
+    
+    content
+      Usage: .row
+
+extend basic-html.jade
+
+append stylesheet
+  +include-css("/assets/css/master.css")
+
+block head-custom
+  -
+    if(pageTitle == undefined){
+      var title = majorName.toUpperCase() + " " + minorName.toUpperCase();
+    } else {
+      title = pageTitle + " | " + majorName.toUpperCase();
+    }
+  +meta-title(title)
+
+block body
+
+  mixin nav()
+    nav.afe-nav
+      .container
+        ul.clearfix
+          each value, index in navigator
+            each herf, key in value
+              li: a(href=herf)=key
+  
+  mixin label(a, b)
+    .afe-banner
+      .container
+        .title-label
+          if a
+            h1=a
+          if b
+            h2=b
+
+  mixin content-title(a)
+    .h1container
+      h1=a
+
+  mixin content-circle(a, url)
+    .circlecontainer
+      .circle-frame-border
+        .circle-frame
+          img(src=url, alt=a)
+      if a
+        h1=a
+
+  header
+    +nav()
+    block header
+
+  .afe-body
+    block content-without-container
+      .container
+        block content
+
+  footer
+    +nav()
+    .container.copyright
+      .row
+        .col-sm-4
+          h1=majorName
+          h2=minorName
+        .col-sm-offset-1.col-sm-2
+          img(src="assets/i/icon-tel.png", alt="")
+          ul
+            each value in phoneNumbers
+              li=value
+        .col-sm-offset-1.col-sm-3
+          img(src="assets/i/icon-loc.png", alt="")
+          ul
+            li #{address}
+            li 邮政编码：#{postcode}
+      .row
+        .col-sm-4
+          p=ICP
+        .col-sm-offset-1.col-sm-2
+          img(src="assets/i/icon-fax.png", alt="")
+          ul
+            each value in faxNumbers
+              li=value
+        .col-sm-offset-1.col-sm-3
+          img(src="assets/i/icon-mail.png", alt="")
+          ul
+            each value in emails
+              li=value

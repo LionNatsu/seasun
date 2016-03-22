@@ -1,88 +1,77 @@
-extend templates/master.jade
-
-block head-custom
-  +meta-title("Community Portal")
-  +meta-description("Anthon Open Source Community")
+extend templates/masterA.jade
 
 append stylesheet
-  +include-css("/assets/css/flow.css")
-  +include-css("/assets/css/hoverpanel.css")
   +include-css("/assets/css/index.css")
+  style #cover {background-image: url("#{backgroundUrl}");
+  style #introduce {background-image: url("#{backgroundUrl2}");
+  style.
+    body {
+      visibility: hidden;
+    }
 
-block banner
-  .row
-    .col-md-12.text-center
-      h1.afe-index-title AOSC
-      // HERE IS AN IDEA, RANDOM SUB-TITLE EACH VISIT?
-      // GOOD IDEA
-      h2 &nbsp;
-    .col-md-offset-3.col-md-6.text-center
-      p.
-        Welcome to Anthon Open Source Community! We are a group of free and open technology enthusiasts working hard for improvements.
+block content-without-container
+  section#cover
+    
+    .center-block
+      .wrapper-block
+        h1=majorName.toUpperCase()
+        h2=minorName.toUpperCase()
+        form#searchform(method="get", action="https://www.baidu.com/s")
+          input#searchinput(type="text", name="q1", required, placeholder=searchHint)
+          input(type="hidden", name="q6", value=domain)
+        h3=script
+    #scrollbutton-wrapper
+      a(href="#introduce")
+        img#scrollbutton(src="/assets/i/scroll.png", alt="")
+  section#introduce
+    .container
+      +label("公司简介")
+    #introduce-wrapper
+      .container
+        #wrapper
+          ul.introduce-nav
+            each value in introduce
+              li.nav-dot
+          each value in introduce
+            .introduce-item
+              - var paras = value.replace(/\n\n/g, "\r").replace(/\n/g, "").split("\r");
+              each para in paras
+                p=para
 
-block banner-floating
-  .row
-    .col-md-12.text-center
-      small.
-        Most good programmers do programming not because they expect to get paid
-        or get adulation by the public, but because it is fun to program. -- Linus Torvalds
-
-block content
-  .afe-sub-banner.hidden-sm.hidden-xs
-    .container: .row: .col-md-12: ul
-      // FIXME: PROTOTYPE
-      each val in [1, 2, 3, 4, 5]
-        li: a.image-popup-no-margins(href="/assets/i/test.png"): img(src="/assets/i/test.png")
-      li: a(href="/community") More...
-  .afe-sub-banner-padding.hidden-sm.hidden-xs
-  
-  #wrapper.row
-    .col-md-8
-      h1.afe-small-captions LASTEST NEWS
-      ul.afe-flow
-        each val, index in params.broadcast
-          if index<5
-            li(class="afe-tag-"+val.type)
-                h1.afe-title=val.title
-                  small=val.date
-                .afe-content
-                  each para in val.content
-                    !=para
-          else if index<8
-            li(class="afe-tag-"+val.type): h1.afe-title: a(href="#")=val.title
-        h1(style="font-size: 18px; margin-bottom: 50px;")
-          a(href="/news-flow") Read more...
-    .col-md-4
-      h1.afe-small-captions PROJECTS OVERVIEW
-      ul.afe-hoverpanel
-        each project in params.projects
-          li
-            h1=project.fullname
-            p=project.description
-            
-append stylesheet
-  +include-css("/assets/css/magnific-popup.css")
 append javascript
-  +include-js("/assets/js/jquery.magnific-popup.min.js")
   script.
     $(function() {
-      $(".image-popup-no-margins").magnificPopup({
-        type: "image",
-        closeOnContentClick: true,
-        closeBtnInside: false,
-        fixedContentPos: true,
-        image: {
-          verticalFit: true
-        },
-        zoom: {
-          enabled: true,
-          duration: 300 // don't foget to change the duration also in CSS
+      $("a[href*=#],area[href*=#]").click(function() {
+        if (location.pathname.replace(/^\//, "") == this.pathname.replace(/^\//, "") && location.hostname == this.hostname) {
+          var $target = $(this.hash);
+          $target = $target.length && $target || $("[name=" + this.hash.slice(1) + "]");
+          if ($target.length) {
+            var targetOffset = $target.offset().top;
+            $("html, body").animate({
+                scrollTop: targetOffset
+            },
+            "normal");
+            return false;
+          }
         }
       });
-    });
-  script.
-    $(function() {
-      $.getJSON("/api/splashes", function(json) {
-        if(json.splashes) $(".afe-banner h2").text(json.splashes);
+      $($(".nav-dot")[0]).addClass("active");
+      $($(".introduce-item")[0]).addClass("active");
+      $(".introduce-item").hide();
+      $(".introduce-item.active").show();
+      $(".nav-dot").click(function() {
+        var jQthis = $(this);
+        if(jQthis.hasClass("active")) return;
+        $(".nav-dot.active").removeClass("active");
+        jQthis.addClass("active");
+        var index = $(".nav-dot").index($(this));
+        $(".introduce-item.active").removeClass("active").fadeOut(function() {
+          $($(".introduce-item")[index]).addClass("active").fadeIn();
+        });
       });
+      
+      $("section").height($(document).height() - $("header").height());
+      $("#introduce-wrapper").height($("section").height() - 188);
+      $("body").css("visibility", "visible");
     });
+  
