@@ -1,0 +1,40 @@
+pageTitle: 资质荣誉
+pageSubTitle: Qualification
+
+itemsPerRow: 3
+itemSize: 180px
+
+cornerLabel: 资质
+
+catalog:
+  - name: 干散货运输干散货运输
+    imageUrl: /assets/i/test.png
+    items:
+      - name: 出口印尼散装石油焦
+        imageUrl: /assets/i/test.png
+      - name: 进口越南的散装煤碳
+        imageUrl: /assets/i/test.png
+      - name: 越南出口韩国的石英砂
+        imageUrl: /assets/i/test.png
+
+  - name: 件杂货班轮运输
+    imageUrl: /assets/i/test.png
+    items:
+      - name: 出口印度尼西亚镀锌卷
+        imageUrl: /assets/i/test.png
+      - name: 出口越南热卷
+        imageUrl: /assets/i/test.png
+      - name: 出口新加坡钢管
+        imageUrl: /assets/i/test.png
+      - name: 出口科伦坡市政水管
+        imageUrl: /assets/i/test.png
+
+  - name: 工程项目
+    imageUrl: /assets/i/test.png
+    items:
+      - name: 出口印度电站项目
+        imageUrl: /assets/i/test.png
+      - name: 出口斯里兰卡援建项目
+        imageUrl: /assets/i/test.png
+      - name: 韩国出口台湾的盘圆
+        imageUrl: /assets/i/test.png

@@ -1,0 +1,15 @@
+pageTitle: 船队信息
+pageSubTitle: FLEET INFO
+
+itemsPerRow: 3
+itemSize: 180px
+
+ships:
+  - name: MV "AOLI 7"
+    photoUrl: /assets/i/1.jpg
+
+  - name: MV "DAFENG"
+    photoUrl: /assets/i/2.jpg
+
+  - name: MV "SINO 5"
+    photoUrl: /assets/i/3.jpg

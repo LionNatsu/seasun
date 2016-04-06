@@ -1,0 +1,56 @@
+pageTitle: 新闻资讯
+pageSubTitle: NEWS
+
+rightSide:
+  - name: 要问快报
+    items:
+      - imageUrl: /assets/i/test.png
+        text: CMA CGM Benjamin Franklin 12 月 26 日将会出现在洛杉矶港。
+      - imageUrl: /assets/i/test.png
+        text: CMA CGM Benjamin Franklin 12 月 26 日将会出现在洛杉矶港。
+  - name: 要问快报2
+    items:
+      - imageUrl: /assets/i/test.png
+        text: CMA CGM Benjamin Franklin 12 月 26 日将会出现在洛杉矶港。
+      - imageUrl: /assets/i/test.png
+        text: CMA CGM Benjamin Franklin 12 月 26 日将会出现在洛杉矶港。
+
+leftSide:
+  - name: 行业新闻
+    items:
+      - title: 巨型船时代跨太平洋贸易
+        date: 2015/12/14
+        imageUrl: /assets/i/test.png
+        paras: |
+          万吨级的 CMA CGM Benjamin Franklin  12 月 26 日将会出现在洛杉矶港，这是在此港出现的最大的船舶。这将为跨太平洋超大船舶开启一个新的时代。
+
+      - title: 巨型船时代跨太平洋贸易
+        date: 2015/12/14
+        imageUrl: /assets/i/test.png
+        paras: |
+          万吨级的 CMA CGM Benjamin Franklin  12 月 26 日将会出现在洛杉矶港，这是在此港出现的最大的船舶。这将为跨太平洋超大船舶开启一个新的时代。
+
+      - title: 巨型船时代跨太平洋贸易
+        date: 2015/12/14
+        imageUrl: /assets/i/test.png
+        paras: |
+          万吨级的 CMA CGM Benjamin Franklin  12 月 26 日将会出现在洛杉矶港，这是在此港出现的最大的船舶。这将为跨太平洋超大船舶开启一个新的时代。
+  - name: 行业新闻2
+    items:
+      - title: 巨型船时代跨太平洋贸易
+        date: 2015/12/14
+        imageUrl: /assets/i/test.png
+        paras: |
+          万吨级的 CMA CGM Benjamin Franklin  12 月 26 日将会出现在洛杉矶港，这是在此港出现的最大的船舶。这将为跨太平洋超大船舶开启一个新的时代。
+
+      - title: 巨型船时代跨太平洋贸易
+        date: 2015/12/14
+        imageUrl: /assets/i/test.png
+        paras: |
+          万吨级的 CMA CGM Benjamin Franklin  12 月 26 日将会出现在洛杉矶港，这是在此港出现的最大的船舶。这将为跨太平洋超大船舶开启一个新的时代。
+
+      - title: 巨型船时代跨太平洋贸易
+        date: 2015/12/14
+        imageUrl: /assets/i/test.png
+        paras: |
+          万吨级的 CMA CGM Benjamin Franklin  12 月 26 日将会出现在洛杉矶港，这是在此港出现的最大的船舶。这将为跨太平洋超大船舶开启一个新的时代。

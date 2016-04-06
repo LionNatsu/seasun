@@ -1,0 +1,78 @@
+pageTitle: 主营业务
+pageSubTitle: MAIN BUSINESS
+
+itemsPerRow: 3
+itemSize: 180px
+
+cornerLabel: 案例
+
+catalog:
+  - name: Dry Bulk Transportation
+    imageUrl: /assets/i/test.png
+    items:
+      - name: 出口印尼散装石油焦
+        imageUrl: /assets/i/test.png
+      - name: 进口越南的散装煤碳
+        imageUrl: /assets/i/test.png
+      - name: 越南出口韩国的石英砂
+        imageUrl: /assets/i/test.png
+
+  - name: General Break Bulk Cargo Liner Service
+    imageUrl: /assets/i/test.png
+    items:
+      - name: 出口印度尼西亚镀锌卷
+        imageUrl: /assets/i/test.png
+      - name: 出口越南热卷
+        imageUrl: /assets/i/test.png
+      - name: 出口新加坡钢管
+        imageUrl: /assets/i/test.png
+      - name: 出口科伦坡市政水管
+        imageUrl: /assets/i/test.png
+      - name: 出口越南钢结构
+        imageUrl: /assets/i/test.png
+      - name: 出口印度阳极项目
+        imageUrl: /assets/i/test.png
+      - name: 出口印尼成套机械设备
+        imageUrl: /assets/i/test.png
+      - name: 出口巴基斯坦工程车辆
+        imageUrl: /assets/i/test.png
+
+  - name: Project Cargo Service
+    imageUrl: /assets/i/test.png
+    items:
+      - name: 出口印度电站项目
+        imageUrl: /assets/i/test.png
+      - name: 出口斯里兰卡援建项目
+        imageUrl: /assets/i/test.png
+      - name: 韩国出口台湾的盘圆
+        imageUrl: /assets/i/test.png
+      - name: 出口越南的钢板
+        imageUrl: /assets/i/test.png
+      - name: 出口韩国件杂货
+        imageUrl: /assets/i/test.png
+      - name: 出口伊拉克市政排水管
+        imageUrl: /assets/i/test.png
+      - name: 印尼进口纸浆
+        imageUrl: /assets/i/test.png
+      - name: 出口越南废钢
+        imageUrl: /assets/i/test.png
+
+  - name: Heavy Lifts Transportation
+    imageUrl: /assets/i/test.png
+    items:
+      - name: 出口越南水泥厂设备
+        imageUrl: /assets/i/test.png
+      - name: 出口越南水泥厂设备
+        imageUrl: /assets/i/test.png
+      - name: 出口越南大型设备
+        imageUrl: /assets/i/test.png
+      - name: 上港14区三台门机搬迁驳船运输
+        imageUrl: /assets/i/test.png
+
+  - name: Round Log Transportation
+    imageUrl: /assets/i/test.png
+    items:
+      - name: 进口马来西亚原木
+        imageUrl: /assets/i/test.png
+      - name: 中国转口越南的原木
+        imageUrl: /assets/i/test.png

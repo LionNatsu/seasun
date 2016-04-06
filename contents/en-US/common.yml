@@ -1,0 +1,17 @@
+navigator:
+  home: Home
+  news: News
+  business: Business
+  honor: Qualification
+  fleet: Fleet
+  about: About
+
+bannerUrl: /assets/i/opt-a.jpg
+
+searchHint: Search...
+
+address: 中国上海浦东大道 2742 弄 1 号楼 1314-1315 室
+postcode: 200136
+emails:
+  - 行政招聘：shippinghr@126.com
+  - 业务邮箱：chartering@seasunmarine.com

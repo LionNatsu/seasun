@@ -1,7 +1,19 @@
-backgroundUrl: /assets/i/cover.jpg
-backgroundUrl2: /assets/i/2.jpg
+
+bg:
+  firstpage:
+    time: 8000
+    urls:
+      - /assets/i/cover.jpg
+      - /assets/i/2.jpg
+  introduce:
+    time: 8000
+    urls:
+      - /assets/i/1.jpg
+      - /assets/i/3.jpg
+
 script: 勤奋 \ 勤俭 \ 专业 \ 敬业
 
+introduceCaption: 公司简介
 introduce:
   - |
     鑫昕船务有限公司是一家以国际海上散杂货运输为主，集公路、铁路货运、中转、仓储为一体的专业化
