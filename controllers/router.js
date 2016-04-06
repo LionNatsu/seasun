@@ -24,8 +24,13 @@ function contains(a, obj) {
 }
 
 function merge(obj1, obj2){
-  for(var key in obj2)
-    obj1[key] = obj2[key];
+  for(var key in obj2) {
+    if(obj1[key] !== undefined && typeof obj1[key] == 'object') {
+      obj1[key] = merge(obj1[key], obj2[key]);
+    } else {
+      obj1[key] = obj2[key];
+    }
+  }
   return obj1;
 }
 
@@ -37,30 +42,67 @@ function formatDate(date) {
                + date.getUTCFullYear();
 }
 
-function readYAML(yamlfile) {
+function readYAML(yamlfile, dir) {
+  dir = dir ? dir + '/' : '' ;
   try {
-    return yaml.safeLoad(fs.readFileSync('contents/' + yamlfile + '.yml', 'utf8'));
+    return yaml.safeLoad(fs.readFileSync('contents/' + dir + yamlfile + '.yml', 'utf8'));
   } catch (e) {
-    log.warn('yaml: ' + yamlfile + ' was not found');
+    log.warn('yaml: ' + dir + yamlfile + ' was not found');
     return {};
   }
 }
 
-function router(req, res) {
-  var r = req.params.router;
-  if(contains(routers, r)) {
-    var params = merge(readYAML('common'), readYAML(r));
-    params = merge(params, {urlParams: req.query});
-    res.render(r, params);
-  } else {
-    res.sendStatus(404);
-  }
-}
+exports.DoBoom = function(express, app) {
+  var router = express.Router();
 
-exports.DoBoom = function(app) {
-  app.get( '/' , function(req, res) {
-    req.params.router = 'index';
-    router(req, res);
+  router.get( '/' , function(req, res, next) {req.m_router = 'index'; next();});
+  router.get( '/:router' , function(req, res, next) {req.m_router = req.params.router; next();});
+  router.get( '*' , function (req, res) {
+    var r = req.m_router;
+    if(contains(routers, r)) {
+      var params;
+      params = merge(readYAML('common'), readYAML('common', req.lang));
+      params = merge(params, readYAML(r, req.lang));
+      params = merge(params, {urlParams: req.query, domain: req.headers.host, lang: req.lang});
+      res.render(r, params);
+    } else {
+      res.sendStatus(404);
+    }
   });
-  app.get( '/:router' , router);
+
+  app.use( '/set-lang' , function(req, res, next) {
+    var languages = readYAML('common').languages;
+    if(req.query.lang == undefined) {
+      res.redirect('/' + languages[0].code + '/');
+      return;
+    }
+    for (var i = 0; i < languages.length; i++) {
+      if(languages[i].code == req.query.lang) {
+        req.lang = req.query.lang;
+        res.cookie('lang', req.lang);
+        res.redirect('/' + languages[i].code + '/');
+        return;
+      }
+    }
+    res.redirect('/' + languages[0].code + '/');
+  });
+
+  app.get( '/' , function(req, res) {
+    var l = readYAML('common').languages[0].code;
+    if(req.cookies.lang) l = req.cookies.lang;
+    res.redirect('/' + l + '/');
+  });
+
+  app.use( '/:lang/' , function(req, res, next) {
+    var languages = readYAML('common').languages;
+    for (var i = 0; i < languages.length; i++) {
+      if(languages[i].code == req.params.lang) {
+        req.lang = req.params.lang;
+        next();
+        return;
+      }
+    }
+    res.sendStatus(404);
+  });
+  app.use( '/:lang/' , router);
 };

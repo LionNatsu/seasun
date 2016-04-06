@@ -32,15 +32,33 @@ block head-custom
     }
   +meta-title(title)
 
+append javascript
+  script.
+    $(function() {
+      $("#language-switch").click(function() {
+        $(".popup-lang").fadeToggle("fast");
+      });
+    });
+
 block body
 
   mixin nav()
     nav.afe-nav
       .container
-        ul.clearfix
-          each value, index in navigator
-            each herf, key in value
-              li: a(href=herf)=key
+        ul.nav-list.clearfix
+          li: a(href='/'+lang+'/')=navigator.home
+          li: a(href='/'+lang+'/news')=navigator.news
+          li: a(href='/'+lang+'/business')=navigator.business
+          li: a(href='/'+lang+'/honor')=navigator.honor
+          li: a(href='/'+lang+'/fleet')=navigator.fleet
+          li: a(href='/'+lang+'/about')=navigator.about
+          li.lang-btn(style="padding-top: 0; padding-bottom: 0;")
+            a#language-switch(href="javascript:;")
+              img(src="/assets/i/lang.png", alt="", style="height: 40px;")
+        .popup-lang(style="display: none;")
+          ul
+            each value in languages
+              li: a(href="/set-lang?lang=" + value.code)=value.name
   
   mixin label(a, b)
     .afe-banner
@@ -80,25 +98,25 @@ block body
           h1=majorName
           h2=minorName
         .col-sm-offset-1.col-sm-2
-          img(src="assets/i/icon-tel.png", alt="")
+          img(src="/assets/i/icon-tel.png", alt="")
           ul
             each value in phoneNumbers
               li=value
         .col-sm-offset-1.col-sm-3
-          img(src="assets/i/icon-loc.png", alt="")
+          img(src="/assets/i/icon-loc.png", alt="")
           ul
             li #{address}
-            li 邮政编码：#{postcode}
+            li ##{postcode}
       .row
         .col-sm-4
           p=ICP
         .col-sm-offset-1.col-sm-2
-          img(src="assets/i/icon-fax.png", alt="")
+          img(src="/assets/i/icon-fax.png", alt="")
           ul
             each value in faxNumbers
               li=value
         .col-sm-offset-1.col-sm-3
-          img(src="assets/i/icon-mail.png", alt="")
+          img(src="/assets/i/icon-mail.png", alt="")
           ul
             each value in emails
               li=value

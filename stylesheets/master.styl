@@ -9,8 +9,14 @@
   display: none
   width: 100%
 
+html
+  height: 100%
+
 body
+  position: relative
+  min-height: 100%
   color: #989898
+  padding-bottom: 300px
   font-size: 14px
 
 nav
@@ -30,19 +36,50 @@ nav
 
 header
   nav
-    ul
+    .container
+      position: relative
+    .popup-lang
+      position: absolute
+      top: 45px
+      right: 0
+      z-index: 100
+      width: 100px
+      background-color: #f1f1f1
+      color: #989898
+      border-radius: 5px
+      a
+        font-size: 14px
+    ul.nav-list
       display: table
       width: 100%
       li
         display: table-cell
+        width: 180px
         text-align: center
+        float: left
+      li.lang-btn
+        width: auto
+        float: right
+        a
+          padding: 0
+        img
+          height: 40px
       a:hover
         background-color: #96abcf
         color: #e8ebee
 
 footer
+  position: absolute
+  width: 100%
+  height: 300px
+  bottom: 0
+  left: 0
+  .popup-lang
+    display: none
   nav
     background-color: #6f849e
+    .lang-btn
+      display: none
     li
       float: left
     a

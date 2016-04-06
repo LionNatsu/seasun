@@ -3,32 +3,33 @@ extend templates/masterB.jade
 block content
   #wrapper.row
     .col-sm-7
-      +content-title("公司简介")
-      - var paras = introduce.replace(/\n\n/g, "\r").replace(/\n/g, "").split("\r");
-      each para in paras
-        p=para
+      each item in leftSide
+        +content-title(item.name)
+        - var paras = item.text.replace(/\n\n/g, "\r").replace(/\n/g, "").split("\r");
+        each para in paras
+          p=para
     .col-sm-offset-1.col-sm-4
-      +content-title("联系我们")
-      p 地　　址：#{address}
-      p 邮政编码：#{postcode}
-      p 网　　址：#{domain}
-      p 电　　话：#{phoneNumbers[0]}
+      +content-title(rightSide.contactus.caption)
+      p #{rightSide.contactus.address}：#{address}
+      p #{rightSide.contactus.postcode}：#{postcode}
+      p #{rightSide.contactus.website}：#{domain}
+      p #{rightSide.contactus.telephone}：#{phoneNumbers[0]}
       - var i = 1;
       while i <= phoneNumbers.length-1
         p 　　　　　#{phoneNumbers[i]}
         - i++;
-      p 传　　真：#{faxNumbers[0]}
+      p #{rightSide.contactus.fax}：#{faxNumbers[0]}
       - var i = 1;
       while i <= faxNumbers.length-1
         p 　　　　　#{faxNumbers[i]}
         - i++;
       each value in emails
         p=value
-      each section in additionSections
+      each section in rightSide.additionSections
         +content-title(section.name)
         each item in section.items
           p=item
     .col-sm-12
-      +content-title("组织结构")
-      img(src="/assets/i/organise.png", alt="The Structure", style="display: block; margin: 0 auto;")
+      +content-title(downSide.caption)
+      img(src=downSide.imageUrl, alt="", style="display: block; margin: 0 auto;")
       

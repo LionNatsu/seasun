@@ -2,8 +2,6 @@ extend templates/masterA.jade
 
 append stylesheet
   +include-css("/assets/css/index.css")
-  style #cover {background-image: url("#{backgroundUrl}");
-  style #introduce {background-image: url("#{backgroundUrl2}");
   style.
     body {
       visibility: hidden;
@@ -11,7 +9,6 @@ append stylesheet
 
 block content-without-container
   section#cover
-    
     .center-block
       .wrapper-block
         h1=majorName.toUpperCase()
@@ -25,7 +22,7 @@ block content-without-container
         img#scrollbutton(src="/assets/i/scroll.png", alt="")
   section#introduce
     .container
-      +label("公司简介")
+      +label(introduceCaption)
     #introduce-wrapper
       .container
         #wrapper
@@ -39,6 +36,7 @@ block content-without-container
                 p=para
 
 append javascript
+  script var bg = !{JSON.stringify(bg)};
   script.
     $(function() {
       $("a[href*=#],area[href*=#]").click(function() {
@@ -70,7 +68,34 @@ append javascript
         });
       });
       
-      $("section").height($(document).height() - $("header").height());
+      function bgSlide(item, selector) {
+        $(selector).prepend($("<div></div>").addClass("bgimg").addClass("bgimg-bg"))
+          .prepend($("<div></div>").addClass("bgimg").addClass("bgimg-fg"));
+        function preloadImages(imgs) {
+          for (var i = 0; i < imgs.length; i++) {
+            $("<img />").attr("src", imgs[i]);
+          }
+        }
+        function runSlide(){
+          if(item.index == undefined || item.index == item.urls.length) item.index = 0;
+          $(selector).children(".bgimg-bg")
+            .css("background-image", 'url("' + item.urls[item.index] + '")');
+          $(selector).children(".bgimg-fg").fadeOut('slow', function(){
+            $(this).css("background-image", 'url("' + item.urls[item.index] + '")').show();
+            item.index++;
+          });
+        }
+        preloadImages(item.urls)
+        setInterval(runSlide, item.time);
+        runSlide()
+      }
+      
+      bgSlide(bg.firstpage, "section#cover");
+      bgSlide(bg.introduce, "section#introduce");
+      
+      var h = $(window).height() - $("header").height();
+      h = h < 600 ? 600 : h;
+      $("section").height(h);
       $("#introduce-wrapper").height($("section").height() - 188);
       $("body").css("visibility", "visible");
     });

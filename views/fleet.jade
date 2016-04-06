@@ -12,6 +12,6 @@ block content
           .circle-row
             - var roll_i = 0;
             while roll_i < itemsPerRow && i < ships.length
-              a(href="/ship?name=" + ships[i].name)
+              a(href='/'+lang+"/ship?name=" + ships[i].name)
                 +content-circle(ships[i].name, ships[i].photoUrl)
               - roll_i++; i++;

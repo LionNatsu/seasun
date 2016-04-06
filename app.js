@@ -12,11 +12,13 @@ app.engine('jade', function(path, options, fn) {
   });
 app.set('view engine', 'jade');
 app.set('views', './views');
+app.use(require('cookie-parser')());
 app.use(express.static('static'));
-routes.DoBoom(app);
+routes.DoBoom(express, app);
 var child_process = require('child_process');
 child_process.fork('./controllers/watcher.js');
 log.debug('server: Fork watcher');
-var server = app.listen(3000, function () {
+log.debug('command: ' + process.argv);
+var server = app.listen(process.argv[2], function () {
   log.debug('server: Listening at port ' + server.address().port);
 });
